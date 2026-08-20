@@ -1,0 +1,4 @@
+interface:
+  display_name: "DL/T 376.1 协议分析"
+  short_description: "DL/T 376.1 报文切帧、校验、解帧与异常分析"
+  default_prompt: "使用 $dlt3761 逐字段解析这段 376.1 十六进制报文并给出校验、业务含义与置信度。"
