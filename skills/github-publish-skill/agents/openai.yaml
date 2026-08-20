@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Codex Skill to GitHub"
+  short_description: "Safely migrate and publish a Codex Skill to GitHub"
+  default_prompt: "Use $github-publish-skill to migrate a local Codex Skill into Git management and publish it safely to my GitHub repository."
