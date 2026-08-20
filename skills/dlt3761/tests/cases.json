@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status_policy": {
+    "strong_regression": "Only validation_status=已人工确认 is protocol evidence.",
+    "other_cases": "未人工确认、规则构造、存疑 are structural exercises only."
+  },
+  "cases": [
+    {
+      "id": "constructed-terminal-login-f1",
+      "raw": "68 32 00 32 00 68 C9 34 12 2E 16 00 02 71 00 00 01 00 C7 16",
+      "source": "按知识库规则人工构造",
+      "validation_status": "规则构造",
+      "profile": "standard-2009/common",
+      "direction": "terminal-to-master",
+      "expected": {
+        "status": "complete-valid",
+        "frame_size": 20,
+        "l1": 12,
+        "AFN": "0x02",
+        "Pn": [0],
+        "Fn": [1],
+        "checksum_valid": true
+      },
+      "business_meaning": "终端登录；仅用于算法验证，不作为真实设备证据",
+      "evidence": "docs/376_1_knowledge/examples.md"
+    },
+    {
+      "id": "real-station2-f819-query",
+      "raw": "68 4A 00 4A 00 68 5B FF FF FF FF 04 0A E0 00 00 04 66 01 07 10 20 18 05 04 16",
+      "source": "用户提供的真实通信报文",
+      "validation_status": "未人工确认",
+      "profile": "station-2.0-v1.6",
+      "direction": "master-to-terminal",
+      "expected": {
+        "status": "complete-valid",
+        "frame_size": 26,
+        "l1": 18,
+        "AFN": "0x0A",
+        "Pn": [0],
+        "Fn": [819],
+        "checksum_valid": true
+      },
+      "business_meaning": "F819主站连接参数查询；业务结论待人工确认",
+      "evidence": "docs/376_1_knowledge/data_units.md F819; original capture supplied in conversation"
+    },
+    {
+      "id": "real-station2-f819-response-13-groups",
+      "raw": "68EA03EA03688800001200040AE0000004660D00002300B5BE0100EE6B000000D10400011500FBBE1600110000000067110002FF00E3BE0100C77B000000FFFF0003FF009DBEFFFF9E37FC0000FFFF0004FF00FFBEFFFF0274FC0000FFFF000509FFFFFF0100FFFF030000401F00060BFFFFFFAE08FFFF030000401F000000000000120000000001002C01580001020304000114000000010000000301002C01C222AC142E4E00011E00010000000000000100F40116004202032B00031FFF08230800FFFF030100B400CE130000000000041E00010000000000000100300C411FFFFFFFFF00060BFFFFFFAE08FFFF030100B400CE1300000000010710201805FB16",
+      "source": "用户说明为终端当前应答的真实设备报文",
+      "validation_status": "未人工确认",
+      "profile": "station-2.0-v1.6",
+      "direction": "terminal-to-master",
+      "expected": {
+        "status": "complete-valid",
+        "frame_size": 258,
+        "l1": 250,
+        "AFN": "0x0A",
+        "Pn": [0],
+        "Fn": [819],
+        "checksum_valid": true
+      },
+      "business_meaning": "F819查询应答，业务体声明13组参数；各组语义仍需真实设备逐项确认",
+      "evidence": "docs/376_1_knowledge/data_units.md F819; original capture supplied in conversation"
+    }
+  ]
+}
