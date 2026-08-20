@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gerrit Push Review"
+  short_description: "Push commits to Gerrit review refs safely."
+  default_prompt: "Use $gerrit-push-review to push the current commit to Gerrit refs/for/<branch> and handle rebase or push issues."
