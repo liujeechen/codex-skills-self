@@ -1,0 +1,4 @@
+interface:
+  display_name: "自测报告生成"
+  short_description: "按照个人Word模板和代码提交生成规范的软件自测报告"
+  default_prompt: "Use $self-test-report to generate a self-test report for the latest commit."
