@@ -1,0 +1,6 @@
+interface:
+  display_name: "Topscomm Gerrit Commit & Review"
+  short_description: "Create Topscomm commits and push Gerrit reviews safely."
+  default_prompt: "Use $gerrit-push-review-topscomm to commit the current task changes with the required Topscomm message format, without pushing unless requested."
+policy:
+  allow_implicit_invocation: true
