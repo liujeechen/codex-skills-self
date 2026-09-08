@@ -5,7 +5,7 @@ description: Stable DL/T 376.1-compatible protocol analysis for hexadecimal stre
 
 # dlt3761
 
-Use the project's existing knowledge base as the single maintained protocol-rule source. Apply a deterministic structural check first, then load only the references required for the selected AFN/Fn. Never silently fill gaps from model memory or a different power protocol.
+Use the bundled knowledge base under `references/knowledge/` as the single maintained protocol-rule source. Apply a deterministic structural check first, then load only the references required for the selected AFN/Fn. Never silently fill gaps from model memory or a different power protocol.
 
 ## Locate the knowledge base
 
@@ -104,7 +104,7 @@ When the user explicitly confirms a real result:
 1. Reproduce the old result and isolate the first wrong decision.
 2. Recheck the applicable original section/table and knowledge rule.
 3. Classify the cause as workflow error, knowledge error, missing knowledge, special version, regional/vendor extension, implementation difference, or malformed frame.
-4. Update the existing project knowledge file if and only if its rule is wrong or incomplete; do not copy the correction into SKILL.md as a competing rule.
+4. Update the existing bundled knowledge file if and only if its rule is wrong or incomplete; do not copy the correction into SKILL.md as a competing rule.
 5. Update this workflow only if the workflow caused the error.
 6. Add or promote a case under `tests/cases.json`, recording source, evidence, expected fields, and validation status.
 7. Run `tests/run_regression.py` and ensure existing confirmed cases do not regress.

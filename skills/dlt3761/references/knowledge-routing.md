@@ -2,15 +2,15 @@
 
 ## Resolve the single source of truth
 
-Use this project knowledge root:
+Use the knowledge base bundled with this Skill:
 
 ```text
-/home/STR3_260804/tops_devp_station_II/docs/376_1_knowledge
+references/knowledge
 ```
 
-When working from a checkout that may have moved, locate `docs/376_1_knowledge/README.md` with `rg --files` and use that directory instead. If no knowledge root is available, say so and restrict output to deterministic structural facts; do not reconstruct a second knowledge base from memory.
+Resolve it relative to the directory containing `SKILL.md`, not relative to the user's current working directory. Require `references/knowledge/README.md` to exist before interpreting business fields. If the bundled knowledge root is unavailable, say so and restrict output to deterministic structural facts; do not reconstruct a second knowledge base from memory or search unrelated project checkouts.
 
-The Skill must reference these project files in place. Do not copy their protocol tables into the Skill.
+Do not use another project's `docs/376_1_knowledge` directory as an implicit fallback. Update the bundled knowledge files when a protocol rule is corrected so the Skill and its knowledge source remain versioned together.
 
 ## Route by question
 
