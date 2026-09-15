@@ -1,15 +1,17 @@
 ---
 name: gerrit-push-review-topscomm
-description: Create, amend, and push Topscomm Git commits with the required Chinese commit-message body and Gerrit Change-Id, while preserving unrelated worktree changes and recovering from Gerrit blockers. Always use when a user in Codex asks to commit code or changes with phrases such as “提交代码”, “给我提交”, “提交刚才的改动”, “commit代码”, “commit changes”, “创建提交”, or asks to amend a commit, push to Gerrit refs/for, rebase before review, or diagnose Gerrit responses. A request to commit does not authorize push.
+description: Create, amend, and push Topscomm Git commits with the required Chinese commit-message body and Gerrit Change-Id, while preserving unrelated worktree changes and recovering from Gerrit blockers. Use for company code commits, Gerrit refs/for pushes, review updates, rebases, or Gerrit diagnostics. Do not use for publishing Codex Skills only to a personal GitHub repository; github-publish-skill owns that workflow. A request to commit does not authorize push.
 ---
 
 # Topscomm Gerrit Commit and Review
 
 Handle local commits and Gerrit review conservatively. Preserve unrelated worktree changes. Never push unless the user explicitly requests it.
 
+For a request whose complete scope is publishing or synchronizing a Codex Skill to a personal GitHub repository, do not run this workflow. Use `github-publish-skill` alone.
+
 ## Local Commit Workflow
 
-Use this workflow whenever the user asks to commit code, even if Gerrit or this skill is not named.
+Use this workflow whenever the user asks to commit company project code, even if Gerrit or this skill is not named. Exclude GitHub-only Codex Skill publishing.
 
 1. Inspect repository state:
    ```bash

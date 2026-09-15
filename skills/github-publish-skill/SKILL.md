@@ -1,11 +1,17 @@
 ---
 name: github-publish-skill
-description: Safely migrate an existing Codex Skill from the default skills directory into a local Git repository, replace the original directory with a symbolic link, preserve a backup, merge non-empty GitHub remote history, authenticate HTTPS with GitHub CLI, push without force, and verify the final state. Use when a user asks to back up, version, migrate, publish, sync, or push a Codex Skill to a personal GitHub repository.
+description: Safely migrate, commit, and publish an existing Codex Skill to a personal GitHub repository, including the required Chinese commit-message format. Use this skill alone for GitHub-only Skill backup, versioning, migration, publication, synchronization, or push; do not also invoke gerrit-push-review-topscomm unless the user explicitly requests a Topscomm Gerrit operation.
 ---
 
 # Publish a Codex Skill to GitHub
 
 Migrate one existing Skill into Git management while keeping its default Codex path usable. Preserve data and remote history at every stage.
+
+## Routing Boundary
+
+- This skill owns the complete commit and push workflow when the target is a personal GitHub repository containing Codex Skills.
+- Do not invoke `gerrit-push-review-topscomm` merely because this workflow creates or amends a Git commit.
+- Use the Gerrit skill only when the user explicitly asks for a Topscomm Gerrit action, such as pushing to `refs/for/<branch>`, updating a Gerrit review, or diagnosing a Gerrit rejection.
 
 ## Collect Inputs
 
@@ -65,14 +71,33 @@ Do not move the source until this comparison succeeds.
 
 ### 3. Create the Initial Commit
 
-Inspect `git status`, stage only the managed Skill path, and commit with a specific message such as:
+Inspect `git status`, stage only the managed Skill path, and compose the message using the required format below. Verify the staged diff before committing:
 
 ```bash
 git add -- "$managed_relative_path"
-git commit -m "Add $skill_name Codex skill"
+git diff --cached --check
+git diff --cached --stat
 ```
 
 Confirm a commit exists and the worktree is clean. If identity is missing or incorrect, stop before committing or amend an unpushed commit after setting repository-local identity.
+
+## GitHub Skill Commit Message Format
+
+Use this structure for commits created while publishing a Skill:
+
+```text
+<type>：<concise Chinese subject>
+
+1、<concrete change one>
+2、<concrete change two>
+```
+
+- Inspect recent repository messages and follow the existing subject convention.
+- Use a suitable prefix such as `fix：`, `feat：`, `refactor：`, or `docs：`.
+- Summarize concrete changes in the body, with one change per line.
+- For multiple changes, use Chinese sequence markers `1、`, `2、`, `3、`, and so on.
+- For one change, write it directly without forcing a sequence number.
+- Do not put local filesystem paths into the message. Include URLs only when the user supplies a shareable URL or explicitly requests it.
 
 ### 4. Preserve the Original and Link Codex
 
